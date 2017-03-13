@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="false"></constant>
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.action.excludePattern" value="/dwr/.*,/dwr/test/.*" />
+	<constant name="struts.multipart.saveDir" value="/tmp"></constant>
+	<!-- 将struts2框架中ObjectFactory对象设置为由spring进行托管(action由spring管理) -->
+	<constant name="objectFactory" value="spring" />
+	<package name="default" namespace="/" extends="struts-default">
+		<!-- <global-results> <result name="error"> <param name="location">/jsp/error.jsp</param> 
+			</result> </global-results> -->
+		<action name="show" class="commodityAction" method="show">
+			<result>/jsp/html/index.jsp</result>
+		</action>
+		<action name="findByName" class="commodityAction" method="findByName">
+			<result>/jsp/html/index.jsp</result>
+		</action>
+		<action name="addToCart" class="commodityAction" method="addToCart">
+			<result name="success">/jsp/html/cart.jsp</result>
+			<result name="error">/jsp/html/usersLogin.jsp</result>
+		</action>
+		<action name="updateCart" class="commodityAction" method="updateCart">
+			<result name="success">/jsp/html/cart.jsp</result>
+		</action>
+		<action name="deleteCart" class="commodityAction" method="deleteCart">
+			<result name="success">/jsp/html/cart.jsp</result>
+		</action>
+		<action name="removeCart" class="commodityAction" method="removeCart">
+			<result name="success">/jsp/html/cart.jsp</result>
+		</action>
+		<action name="checkout" class="commodityAction" method="checkout">
+		    <result name="index">/jsp/html/index.jsp</result>
+		    <result name="success">/jsp/html/ordersubmit.jsp</result>
+		</action>
+		<action name="checkOut" class="orderAction" method="checkOut">
+			<result name="error">/jsp/html/usersLogin.jsp</result>
+			<result name="success">/jsp/html/index.jsp</result>
+			<result name="index" type="redirectAction">/orderfindall</result>
+		</action>
+		<action name="*_login" class="{1}LoginAction" method="login">
+			<result name="success" type="dispatcher">
+				<param name="location">../console/{1}Index.jsp</param>
+			</result>
+			<result name="usersLogin">
+				<param name="location">/jsp/html/index.jsp</param>
+			</result>
+			<result name="usersNotLogin">
+				<param name="location">/jsp/html/usersLogin.jsp?code=201</param>
+			</result>
+			<result name="error" type="dispatcher">
+				<param name="location">../console/{1}Login.jsp?code=201</param>
+			</result>
+		</action>
+		<action name="*_logout" class="{1}LoginAction" method="logout">
+			<result name="success">../console/{1}Login.jsp</result>
+		</action>
+		<action name="*_findById" class="{1}Action" method="findByid">
+			<result name="success">/jsp/html/product.jsp</result>
+		</action>
+		<action name="commodity_findAll" class="commodityAction"
+			method="findAll">
+			<result name="success" type="dispatcher">
+				<param name="location">jsp/showcommodity.jsp</param>
+			</result>
+		</action>
+		<action name="commodityclass_findAll" class="commodityclassAction"
+			method="findAll">
+			<result name="success" type="dispatcher">
+				<param name="location">jsp/showcommodityclass.jsp</param>
+			</result>
+		</action>
+		<action name="*_add" class="{1}Action" method="add">
+			<result name="input" type="redirect">
+				<param name="location">/jsp/console/modelFunctions/add{1}.jsp</param>
+			</result>
+			<result name="success">
+				<param name="location">/jsp/console/modelFunctions/add{1}.jsp</param>
+			</result>
+			<result name="usersLogin">
+				<param name="location">/jsp/html/usersLogin.jsp</param>
+			</result>
+			<result name="error">
+				<param name="location">/jsp/console/modelFunctions/add{1}.jsp</param>
+			</result>
+		</action>
+		<action name="*_preadd" class="{1}Action" method="preadd">
+			<result name="success" type="dispatcher">
+				<param name="location">/jsp/console/modelFunctions/add{1}.jsp</param>
+			</result>
+		</action>
+		<action name="*_findByPages" class="{1}Action" method="findByPages">
+			<result name="input" type="dispatcher">
+				<param name="location">/jsp/console/modelFunctions/show{1}.jsp</param>
+			</result>
+			<result name="success" type="dispatcher">
+				<param name="location">/jsp/console/modelFunctions/show{1}.jsp</param>
+			</result>
+			<result name="error" type="dispatcher">
+				<param name="location">/jsp/console/modelFunctions/show{1}.jsp</param>
+			</result>
+		</action>
+		<action name="*_findByPage" class="{1}Action" method="findByPages">
+			<result name="success" type="dispatcher">
+				<param name="location">/jsp/console/modelFunctions/showcommodityclasscontext.jsp</param>
+			</result>
+		</action>
+		<action name="delete_*" class="{1}Action" method="delete">
+			<result name="success" type="dispatcher">
+				<param name="location">/jsp/console/modelFunctions/show{1}.jsp</param>
+			</result>
+		</action>
+		<action name="delBatch_*" class="{1}Action" method="delBatchClass">
+			<result name="success" type="dispatcher">
+				<param name="location">/jsp/console/modelFunctions/show{1}.jsp</param>
+			</result>
+		</action>
+		<action name="preupdate_*" class="{1}Action" method="preupdate">
+			<result name="success" type="dispatcher">
+				<param name="location">jsp/console/modelFunctions/update{1}.jsp</param>
+			</result>
+		</action>
+
+		<action name="update_*" class="{1}Action" method="update">
+			<result name="success" type="dispatcher">
+				<param name="location">jsp/console/modelFunctions/show{1}.jsp</param>
+			</result>
+		</action>
+		<action name="usersUpdate" class="usersAction" method="update">
+			<result name="success" type="dispatcher">
+				<param name="location">/jsp/html/index.jsp</param>
+			</result>
+		</action>
+		<action name="preusersUpdate" class="usersAction" method="preupdate">
+			<result name="success" type="dispatcher">
+				<param name="location">/jsp/html/updateUsers.jsp</param>
+			</result>
+			<result name="error">/jsp/html/usersLogin.jsp</result>
+		</action>
+		<action name="orderfindall" class="orderAction" method="findAll">
+			<result name="success">/jsp/html/showorder.jsp</result>
+			<result name="error">/jsp/html/usersLogin.jsp</result>
+		</action>
+		<action name="ordersfindall" class="orderAction" method="findAllOrders">
+			<result name="success">/jsp/console/modelFunctions/showorders.jsp
+			</result>
+		</action>
+		<action name="setstatus" class="orderAction" method="setStatus">
+			<result name="success">/jsp/console/modelFunctions/showorders.jsp
+			</result>
+		</action>
+		<action name="orderitemfindall" class="orderitemAction" method="findAll">
+			<result name="error">/jsp/html/usersLogin.jsp</result>
+			<result name="success">/jsp/html/ordermain.jsp</result>
+		</action>
+		<action name="findbypage_orders" class="orderitemAction"
+			method="findAll">
+			<result name="success">/jsp/console/modelFunctions/showorderitems.jsp
+			</result>
+		</action>
+		<action name="findByClass" class="commodityAction" method="findByClass">
+		   <result name="success">/jsp/html/categories.jsp</result>
+		</action>
+		<action name="findBySmallClass" class="commodityAction" method="findBySmallClass">
+		   <result name="success">/jsp/html/categories.jsp</result>
+		</action>
+	</package>
+
+</struts>

@@ -1,0 +1,10 @@
+*.class
+bin/
+lib/
+scripts/
+My97DatePicker/
+META-INF
+build/
+.settings/
+.classpath
+.project

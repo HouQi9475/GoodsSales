@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-2-8 0:23:43 by Hibernate Tools 4.0.1.Final -->
+<hibernate-mapping>
+    <class name="com.leo.ssh.domain.Users" table="users" catalog="shop">
+        <id name="userid" type="java.lang.Integer">
+            <column name="userid" />
+            <generator class="identity" />
+        </id>
+        <property name="useracount" type="string">
+            <column name="useracount" length="50" />
+        </property>
+        <property name="userpasswork" type="string">
+            <column name="userpasswork" length="50" />
+        </property>
+        <property name="userstatus" type="java.lang.Boolean">
+            <column name="userstatus" />
+        </property>
+        <property name="username" type="string">
+            <column name="username" length="50" />
+        </property>
+        <property name="userphone" type="string">
+            <column name="userphone" length="50" />
+        </property>
+        <property name="useraddress" type="string">
+            <column name="useraddress" length="100" />
+        </property>
+        <property name="userpost" type="string">
+            <column name="userpost" length="50" />
+        </property>
+        <set name="orders" table="order" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="userid" not-null="true" />
+            </key>
+            <one-to-many class="com.leo.ssh.domain.Order" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-2-8 0:23:43 by Hibernate Tools 4.0.1.Final -->
+<hibernate-mapping>
+    <class name="com.leo.ssh.domain.Admins" table="admins" catalog="shop">
+        <id name="adminid" type="java.lang.Integer">
+            <column name="adminid" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="adminroles" class="com.leo.ssh.domain.Adminroles" fetch="select">
+            <column name="rolesid" />
+        </many-to-one>
+        <property name="adminacount" type="string">
+            <column name="adminacount" length="50" />
+        </property>
+        <property name="adminpassword" type="string">
+            <column name="adminpassword" length="50" />
+        </property>
+        <property name="adminname" type="string">
+            <column name="adminname" length="50" />
+        </property>
+        <property name="adminstatus" type="java.lang.Boolean">
+            <column name="adminstatus" />
+        </property>
+    </class>
+</hibernate-mapping>

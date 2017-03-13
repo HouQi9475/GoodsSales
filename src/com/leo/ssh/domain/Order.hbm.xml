@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-2-8 0:23:43 by Hibernate Tools 4.0.1.Final -->
+<hibernate-mapping>
+    <class name="com.leo.ssh.domain.Order" table="order" catalog="shop">
+        <id name="orderid" type="java.lang.Integer">
+            <column name="orderid" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="users" class="com.leo.ssh.domain.Users" fetch="select">
+            <column name="userid" not-null="true" />
+        </many-to-one>
+        <property name="orderdate" type="timestamp">
+            <column name="orderdate" length="19" />
+        </property>
+        <property name="totalPrice" type="java.lang.Integer">
+            <column name="totalPrice" />
+        </property>
+        <property name="name" type="string">
+            <column name="name" length="10" />
+        </property>
+        <property name="address" type="string">
+            <column name="address" length="50" />
+        </property>
+        <property name="phone" type="string">
+            <column name="phone" length="11" />
+        </property>
+        <property name="status" type="int">
+            <column name="status" not-null="true" />
+        </property>
+        <set name="orderitems" table="orderitem" inverse="true" lazy="true" fetch="select" cascade="all">
+            <key>
+                <column name="orderid" not-null="true" />
+            </key>
+            <one-to-many class="com.leo.ssh.domain.Orderitem" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,13 @@
+@charset "utf-8";
+/* CSS Document */
+
+body,td,th {
+	font-size: 12px;
+}
+body {
+	background-color: #A7A7A7;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}

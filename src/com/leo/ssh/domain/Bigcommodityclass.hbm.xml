@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-2-8 0:23:43 by Hibernate Tools 4.0.1.Final -->
+<hibernate-mapping>
+    <class name="com.leo.ssh.domain.Bigcommodityclass" table="bigcommodityclass" catalog="shop">
+        <id name="bigclassid" type="int">
+            <column name="bigclassid" />
+            <generator class="assigned" />
+        </id>
+        <property name="bigclassname" type="string">
+            <column name="bigclassname" not-null="true" />
+        </property>
+        <set name="commodityclasses" table="commodityclass" inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="bigclass" not-null="true" />
+            </key>
+            <one-to-many class="com.leo.ssh.domain.Commodityclass" />
+        </set>
+    </class>
+</hibernate-mapping>

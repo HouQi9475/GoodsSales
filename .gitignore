@@ -1,3 +1,13 @@
+*.class
+bin/
+lib/
+scripts/
+My97DatePicker/
+META-INF
+build/
+.settings/
+.classpath
+.project
 # Windows image file caches
 Thumbs.db
 ehthumbs.db

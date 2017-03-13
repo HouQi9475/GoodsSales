@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>SSH04</display-name>
+  <welcome-file-list>
+    <welcome-file>jsp/html/index.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <servlet-name>dwr</servlet-name>
+    <servlet-class>uk.ltd.getahead.dwr.DWRServlet</servlet-class>
+    <init-param>
+      <param-name>debug</param-name>
+      <param-value>true</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>dwr</servlet-name>
+    <url-pattern>/dwr/*</url-pattern>
+  </servlet-mapping>
+  <!-- 设置spring框架核心配置文件的路径 -->
+  <context-param>
+     <param-name>contextConfigLocation</param-name>
+     <param-value>
+         classpath*:applicationContext.xml
+     </param-value>
+  </context-param>
+  <!-- 设置spring框架中的openSessionInViewFilter过滤器，将事务控制范围扩大到一个请求级别 -->
+  <filter>
+     <filter-name>OpenSessionInViewFilter</filter-name>
+     <filter-class>org.springframework.orm.hibernate4.support.OpenSessionInViewFilter</filter-class>
+  </filter>
+  <filter-mapping>
+     <filter-name>OpenSessionInViewFilter</filter-name>
+     <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <!-- struts2框架的核心过滤器 -->
+  <filter>
+     <filter-name>struts2</filter-name>
+     <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+  </filter>
+  <filter-mapping>
+     <filter-name>struts2</filter-name>
+     <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <!-- 设置spring IOC容器监听器，将web项目全部运行在该容器下 -->
+  <listener>
+     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  
+</web-app>
