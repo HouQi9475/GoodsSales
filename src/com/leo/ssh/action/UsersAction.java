@@ -6,6 +6,7 @@ import java.util.Map;
 import com.leo.ssh.biz.IUsersBiz;
 import com.leo.ssh.domain.Users;
 import com.leo.ssh.page.PageBean;
+import com.leo.ssh.tools.md5;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ModelDriven;
@@ -16,9 +17,22 @@ public class UsersAction extends BaseAction implements ModelDriven<Users> {
 	private IUsersBiz usersBiz;
 	private int currentPage;
 	private String usersids;
-
+    private String olduserpasswork;
+    private String newuserpasswork;
+    
 	
-
+	public String getOlduserpasswork() {
+		return olduserpasswork;
+	}
+	public void setOlduserpasswork(String olduserpasswork) {
+		this.olduserpasswork = olduserpasswork;
+	}
+	public String getNewuserpasswork() {
+		return newuserpasswork;
+	}
+	public void setNewuserpasswork(String newuserpasswork) {
+		this.newuserpasswork = newuserpasswork;
+	}
 	public int getCurrentPage() {
 		return currentPage;
 	}
@@ -54,8 +68,27 @@ public class UsersAction extends BaseAction implements ModelDriven<Users> {
 		return Action.SUCCESS;
 	}
 	public String update() throws Exception{
+		String old=this.users.getUserpasswork();
+		md5 md=new md5();
+		String news=md.EncoderByMd5(old);
+		this.users.setUserpasswork(news);
 		this.usersBiz.update(users);
 		return Action.SUCCESS;
+	}
+	public String updatePassword() throws Exception{
+		Map session=(Map)ActionContext.getContext().getSession();
+		Users users=(Users) session.get("users");
+		md5 m=new md5();
+		String olds=m.EncoderByMd5(olduserpasswork);
+		String news=m.EncoderByMd5(newuserpasswork);
+		if(olds.equals(users.getUserpasswork())){
+			users.setUserpasswork(news);
+			this.usersBiz.update(users);
+			return Action.SUCCESS;
+		}else{
+			return Action.ERROR;
+		}
+		
 	}
 	public String delete() throws Exception{
 		int usersid=this.users.getUserid();
@@ -76,6 +109,10 @@ public class UsersAction extends BaseAction implements ModelDriven<Users> {
 //		return Action.SUCCESS;
 //	}
 	public String add() throws Exception{
+		String old=this.users.getUserpasswork();
+		md5 md=new md5();
+		String news=md.EncoderByMd5(old);
+		this.users.setUserpasswork(news);
 		this.usersBiz.add(users);
 		this.users.setUseracount(null);
 		this.users.setUsername(null);

@@ -76,6 +76,7 @@ public class OrderAction extends BaseAction implements ModelDriven<Order> {
 		session.put("order", order);
 		session.remove("cart");
 		session.remove("n");
+		session.remove("y");
 		return Action.SUCCESS;
 	}
 	public String findAll() throws Exception{

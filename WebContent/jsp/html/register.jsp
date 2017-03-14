@@ -16,7 +16,7 @@
 #container {
 	width: 100%;
 	height: 575px;
-	background-color: #DDD;
+	background-color: #bedbdf;
 	margin-top: 15px;
 }
 
@@ -28,6 +28,7 @@
 	margin: 10px 10px;
 	padding-top: 100px;
 	margin-left: 450px;
+	
 }
 
 #body {
@@ -35,18 +36,20 @@
 	margin-left: 0px;
 	margin-right: 0px;
 	margin-top: 10px;
+	
 }
 
 #addAdminForm {
 	border: 1px solid #c9c9c9;
 	padding: 10px;
 	border-radius: 8px;
+	background-color:#ffffff;
 
 }
 
 #addAdminForm #formTitle {
 	border: 1px solid #0099FF;
-	background-color: #666;
+	background-color: #6fa8dc;
 	height: auto;
 	width: auto;
 	color: #FFF;

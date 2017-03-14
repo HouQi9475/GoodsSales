@@ -38,7 +38,7 @@
 		<td style="width:13%;">${classPage.commodityClassName }</td>
 		<td style="width:20%;"> 
 			<c:forEach items="${classPage.commodities }" var="goods">
-				<a href="/SSH04/jsp/showcommodity.jsp">${goods.commodityName }</a> &nbsp;
+				<a href="/SSH04/jsp/console/modelFunctions/showcommodity.jsp">${goods.commodityName }</a> &nbsp;
 			</c:forEach>
 		</td>
 	</tr>	

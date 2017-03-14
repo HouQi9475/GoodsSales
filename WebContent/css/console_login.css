@@ -2,59 +2,63 @@
 /* CSS Document */
 
 #loginTable{
+	width:600px;
+	height: 300px;
 	border:1px solid #FFFFFF;
 	border-radius:5px;
 	background-color:#FFFFFF;
 	padding:10px;
 	margin-left:auto;
 	margin-right:auto;
-	margin-top:200px;
+	margin-top:100px;
 }
 #loginTable .title{
 	text-align:center;
-	font-size:15px;
+	font-size:35px;
 	font-weight:bold;
-	color:#111111;
+	color:#6fa8dc;
 }
 #loginTable .text{
-	font-size:13px;
+	font-size:18px;
 	font-weight:bold;
+	padding-left:90px;
 	color:#999999;
 }
 #loginTable .textStyle{
-	font-size:13px;
+	font-size:18px;
 	font-weight:bold;
 	color:#000000;
 	padding-left:10px;
 	border:1px solid #CCCCCC;
 	background-color:#FC6;
 	border-radius:5px;
-	height:16px;
+	height:20px;
 	width:140px;}
 #loginTable .ValidatetextStyle{
-	font-size:13px;
+	font-size:14px;
 	font-weight:bold;
 	color:#000000;
 	padding-left:10px;
 	border:1px solid #CCCCCC;
 	background-color:#FC6;
 	border-radius:5px;
-	height:16px;
+	height:20px;
 	width:40px;}
 #loginTable .codetextStyle{
-	font-size:13px;
+	font-size:18px;
 	font-weight:bold;
 	color:#000000;
 	text-align:center;
 	border:0px;
 	background-color:#FC6;
 	border-radius:5px;
-	height:16px;
+	height:20px;
 	width:60px;}
 #loginTable .btn{
 	border:1px solid  #09C;
 	border-radius:5px;
-	background-color:#06F;
+	background-color:#75b1e7;
 	color:#FFF;
 	cursor:pointer;
+	width: 180px;
 }

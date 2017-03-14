@@ -5,11 +5,20 @@ import java.util.List;
 import com.leo.ssh.base.dao.impl.HibernateGenericDao;
 import com.leo.ssh.dao.IUsersLoginDao;
 import com.leo.ssh.domain.Users;
+import com.leo.ssh.tools.md5;
 
 public class UsersLoginDaoImpl extends HibernateGenericDao<Users, String> implements IUsersLoginDao {
 
 	@Override
 	public Users login(String useracount, String userpasswork) {
+		md5 m=new md5();
+		try {
+			String news=m.EncoderByMd5(userpasswork);
+			userpasswork=news;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		// TODO Auto-generated method stub
 		if(useracount!=null && userpasswork!=null){
 			String hql = "select a from Users as a where a.useracount=? and a.userpasswork=?";//设置查询条件

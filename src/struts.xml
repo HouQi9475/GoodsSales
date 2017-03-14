@@ -55,6 +55,10 @@
 				<param name="location">../console/{1}Login.jsp?code=201</param>
 			</result>
 		</action>
+		<action name="updatePassword" class="usersAction" method="updatePassword">
+		     <result name="success">/jsp/html/usersLogin.jsp?code=202</result>
+		     <result name="error">/jsp/html/updatePassword.jsp?code=201</result>
+		</action>
 		<action name="*_logout" class="{1}LoginAction" method="logout">
 			<result name="success">../console/{1}Login.jsp</result>
 		</action>

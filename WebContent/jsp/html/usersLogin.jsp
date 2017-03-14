@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Insert title here</title>
+<title>欢迎登录商品批发销售网站</title>
 <link rel="stylesheet" type="text/css" href="/SSH04/css/global.css">
 <link rel="stylesheet" type="text/css" href="/SSH04/css/console_login.css">
 <script type="application/javascript" src="/SSH04/scripts/console_login.js"></script>
@@ -61,6 +61,9 @@ function checkForm(){
 	   case 201:
 		   out.print("<script>alert('用户名或密码错误！')</script>");
 	   break;
+	   case 202:
+		   out.print("<script>alert('用户密码已修改，请重新登录!')</script>)");
+		break;
 	   }
    }
 %>
@@ -87,9 +90,9 @@ function checkForm(){
       <input name="code" type="text" id="code" size="4" maxlength="4" class="codetextStyle" readonly>
       <a href="javascript:void(0)" onclick="javascript:createCode();">      点击刷新</a></td>
     </tr>
+    <tr><td height="25" colspan="2" align="center" valign="middle"><input type="submit" name="btnLogin" id="btnLogin" value="立即登录" class="btn"></td></tr>
     <tr>
-      <td height="25"  align="center" valign="middle"><a href="register.jsp"><input type="button" name="btnLogin" id="btnLogin" value="注册用户" class="btn"></a></td>
-      <td height="25"  align="center" valign="middle"><input type="submit" name="btnLogin" id="btnLogin" value="立即登录" class="btn"></td>
+      <td height="25" colspan="2" align="center" valign="middle"><a href="register.jsp"><input type="button" name="btnLogin" id="btnLogin" value="注册用户" class="btn"></a></td>
     </tr>
   </table>
 </form>

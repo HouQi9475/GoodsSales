@@ -37,10 +37,11 @@ function checkForm(){
 			  //步骤2-5：将设置好的四位验证码来显示到指定区域
 			  document.getElementById("code").value=code;
 		}
-	// 判断密码是否填写
-	var password = document.getElementById("userpasswork");
-	if(password.value == ""){
-		alert("密码必须填写！");
+	// 判断两次密码是否一致
+	var newuserpasswork = document.getElementById("newuserpasswork").value ;
+	var renewuserpasswork= document.getElementById("renewuserpasswork").value;
+	if(newuserpasswork!=renewuserpasswork){
+		alert("两次密码输入不一致！");
 		return false;
 	}
 	var validateCode1=document.getElementById("validateCode").value.toLowerCase();
@@ -60,43 +61,33 @@ function checkForm(){
 	   int code=Integer.parseInt(request.getParameter("code").toString());
 	   switch(code){
 	   case 201:
-		   out.print("<script>alert('用户名或密码错误！')</script>");
+		   out.print("<script>alert('原密码错误！')</script>");
 	   break;
 	   }
    }
 %>
-<form id="form1" name="form1" method="post" action="usersUpdate" onSubmit="javascript:return checkForm();">
+<form id="form1" name="form1" method="post" action="updatePassword" onSubmit="javascript:return checkForm();">
   <table id="loginTable" width="320">
     <tr>
-      <td height="25" colspan="2"  class="title">个人信息修改</td>
+      <td height="25" colspan="2"  class="title">密码修改</td>
     </tr>
     <tr>
-      <td width="83" height="25" align="right" valign="middle" class="text">登录帐号：</td>
-      <td width="225"><label for="acount"></label>
-      <input type="text" name="useracount" id="useracount" class="textStyle" value="${requestScope.users.useracount}" readonly="readonly"></td>
-    </tr>
-    <tr>
-      <td height="25" align="right" valign="middle" class="text">登录密码：</td>
+      <td height="25" align="center" valign="middle" class="text">原密码：</td>
       <td><label for="password"></label>
-      <input type="password" name="userpasswork" id="userpasswork" class="textStyle" value="${requestScope.users.userpasswork}">&nbsp;<a href="<%=basePath%>jsp/html/updatePassword.jsp">密码修改</a></td>
+      <input type="password" name="olduserpasswork" id="olduserpasswork" class="textStyle"></td>
     </tr>
     <tr>
-      <td height="25" align="right" valign="middle" class="text">用户姓名：</td>
+      <td height="25" align="center" valign="middle" class="text">新密码：</td>
       <td><label for="password"></label>
-      <input type="text" name="username" id="username" class="textStyle" value="${requestScope.users.username}"></td>
+      <input type="password" name="newuserpasswork" id="newuserpasswork" class="textStyle"></td>
     </tr>
     <tr>
-      <td height="25" align="right" valign="middle" class="text">用户电话：</td>
+      <td height="25" align="center" valign="middle" class="text">确认新密码：</td>
       <td><label for="password"></label>
-      <input type="text" name="userphone" id="userphone" class="textStyle" value="${requestScope.users.userphone}"></td>
+      <input type="password" name="renewuserpasswork" id="renewuserpasswork" class="textStyle"></td>
     </tr>
     <tr>
-      <td height="25" align="right" valign="middle" class="text">用户地址：</td>
-      <td><label for="password"></label>
-      <input type="text" name="useraddress" id="useraddress" class="textStyle" value="${requestScope.users.useraddress}"></td>
-    </tr>
-    <tr>
-      <td height="25" align="right" valign="middle" class="text">验证码：</td>
+      <td height="25" align="center" valign="middle" class="text">验证码：</td>
       <td><label for="validateCode"></label>
       <input name="validateCode" type="text" id="validateCode" size="4" maxlength="4" class="ValidatetextStyle">
       <label for="code"></label>
@@ -105,7 +96,7 @@ function checkForm(){
     </tr>
     <tr>
       <td height="25"  align="center" valign="middle"><a href="<%=basePath%>jsp/html/index.jsp"><input type="button" name="btnLogin" id="btnLogin" value="返回首页" class="btn"></a></td>
-      <td height="25"  align="center" valign="middle"><input type="submit" name="btnLogin" id="btnLogin" value="立即修改" class="btn"></td>
+      <td height="25"  align="center" valign="middle"><input type="submit" name="btnUpdate" id="btnUpdate" value="立即修改" class="btn"></td>
     </tr>
   </table>
 </form>
