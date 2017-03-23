@@ -252,30 +252,6 @@ body a{
 	
 }
 
-/* Footer */
-.icart-footer {background-color:#393939;}
-.icart-footer-container {width:1000px; margin:0 auto;     }
-.icart-footer h3, icart-footer h3 a {color:#ffffff !important;font-size:16px; line-height:24px; margin-bottom:10px;font-weight:normal;}
-.icart-footer {color:#777 !important;}
-.icart-footer a {color:#777 !important;text-decoration:none;}
-.icart-footer a:hover {color:#ffffff !important;}
-.icart-footer-top, #icart-footer-base {background-color:#444; border-top:1px solid #1d1d1d; border-bottom:1px solid #1d1d1d; }
-.icart-logo-footer {float:left;}
-.icart-footer-container {font-size:12px; line-height:18px;width:1000px; margin:0 auto; }
-.icart-footer-container ul {list-style:none; margin:0px; line-height:15px;}
-.icart-footer-container ul li {background:url(images/circle.png) 5px 3px no-repeat;padding-left:17px; margin-bottom:6px;}
-.icart-footer-container ul.social li {padding:5px 0px 5px 20px;padding-bottom:2px;}
-.icart-footer-container ul.social li.twitter {background: url(images/twitter.png) no-repeat left;}
-.icart-footer-container ul.social li.facebook {background: url(images/facebook.png) no-repeat left;margin-right:-4px;}
-.icart-footer-container ul.social li.rss {background: url(images/rss.png) no-repeat left}
-.icart-footer-container .footer-container, .footer-container, .footer-container {padding:0px 0px 15px 0px;}
-.icart-footer-container h3 {white-space: nowrap; width:100%; overflow:hidden;color:#eee;background: url(images/footer_h3.png) no-repeat bottom left;padding-bottom:15px;margin-bottom:5px;margin-top:16px;}
-.icart-footer-top {height:10px;}
-.icart-footer-bottom {padding-top:4px;padding-bottom:4px;background-color:#444;border-top: solid 1px #555;}
-.column_footer {float:left; margin-right:24px; margin-top:-4px;}
-.right_column{margin-right:0px !important;}
-/* End of Footer */
-
 
 .header{
 	width:1000px;
@@ -1831,7 +1807,7 @@ button {  width: auto; overflow: visible; }
 .showhim:hover .showme{
 	display : block;
 }
-
+<!--设置层叠显示描述-->
 .description_featured {
 	padding:8px;
 	margin-top:-219px;
@@ -2246,6 +2222,7 @@ form h2{
 	margin-bottom: 15px;
 	color:#444;
 }
+
 .product-list .price-old {
 	color: #F00;
 	text-decoration: line-through;

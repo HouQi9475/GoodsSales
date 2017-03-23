@@ -41,30 +41,33 @@
 				href="<%=basePath%>jsp/html/register.jsp">注册</a></li>
 		</ul>
 	</div>
-	
-            <div class="heading">
-				<s:set value="#session.cart.items" id="items"></s:set>
-				<a style="padding: 8px; margin-left: -12px;"
-					href="<%=basePath%>jsp/html/cart.jsp">购物车</a><span
-					style="font-size: 14px; color: #fff;">&raquo;</span> <a><span
-					id="cart_total"><s:property value="#session.cart.items.size" />
-						item(s) - $<s:property value="#session.n" /></span></a>
-			</div>
-    <div id="menu">
-    <ul> 
-      <s:iterator var="bc" value="#session.lstBigclass">
-      <li><a href="/SSH04/findByClass.action?commodityclassid=<s:property value="#bc.bigclassid"/>"><s:property value="#bc.bigclassname"/></a>
-       <div>   
-        <ul>     
-          <s:iterator var="c" value="#bc.commodityclasses">
-               <li><a href="/SSH04/findBySmallClass.action?smallcommodityclassid=<s:property value="#c.commodityClassId"/>"><s:property value="#c.commodityClassName"/></a></li>
-          </s:iterator>
-        </ul>
-       </div>
-    </li>
-    </s:iterator> 
-    </ul>
-			
+
+	<div class="heading">
+		<s:set value="#session.cart.items" id="items"></s:set>
+		<a style="padding: 8px; margin-left: -12px;"
+			href="<%=basePath%>jsp/html/cart.jsp">购物车</a><span
+			style="font-size: 14px; color: #fff;">&raquo;</span> <a><span
+			id="cart_total"><s:property value="#session.cart.items.size" />
+				item(s) - $<s:property value="#session.n" /></span></a>
+	</div>
+	<div id="menu">
+		<ul>
+			<s:iterator var="bc" value="#session.lstBigclass">
+				<li><a
+					href="/SSH04/findByClass.action?commodityclassid=<s:property value="#bc.bigclassid"/>"><s:property
+							value="#bc.bigclassname" /></a>
+					<div>
+						<ul>
+							<s:iterator var="c" value="#bc.commodityclasses">
+								<li><a
+									href="/SSH04/findBySmallClass.action?smallcommodityclassid=<s:property value="#c.commodityClassId"/>"><s:property
+											value="#c.commodityClassName" /></a></li>
+							</s:iterator>
+						</ul>
+					</div></li>
+			</s:iterator>
+		</ul>
+
 		<!--  
 		<div id="search">
 			<div class="button-search">
@@ -76,8 +79,8 @@
 		</div>
 		-->
 	</div>
-  
-   
+
+
 	<div class="container">
 		<div class="text_box_left">精选商品</div>
 		<div class="box-product">
@@ -115,8 +118,8 @@
 				</div>
 
 			</c:forEach>
-			</div>
 		</div>
-			<br>
+	</div>
+	<br>
 </body>
 </html>

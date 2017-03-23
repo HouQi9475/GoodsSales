@@ -25,9 +25,9 @@
 		<ul>
 			<li style="width: 0px;"><a></a></li>
 			<li><a href="<%=basePath%>jsp/html/index.jsp" class="home">首页</a></li>
-			<li><a href="account.html" class="account">我的帐号</a></li>
-			<li><a href="<%=basePath%>jsp/html/cart.jsp" class="cart">购物车</a></li>
-			<li><a class="checkout">Checkout</a></li>
+			<li><a class="account"  onclick="javascript:location='/SSH04/preusersUpdate.action?userid=<s:property value="#session.users.userid" />'">我的帐号</a></li>
+			<li><a class="cart" href="<%=basePath%>jsp/html/cart.jsp">购物车</a></li>
+			<li><a class="checkout" href="orderfindall">我的订单</a></li>
 			<li style="float: right;"><a href="login.html" class="login">Login</a></li>
 			<li style="float: right;"><a class="register">Register</a></li>
 		</ul>
@@ -99,11 +99,25 @@
 										原价: $
 										<s:property value="#request.commodity.commodityPrice" />
 									</div>
-									<span class="price-new">$<s:property
-											value="#request.commodity.fcPrice" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="red" size="4">9折</font>
-											&nbsp;&nbsp;&nbsp;<font color="red" size="4">8折</font>
-											&nbsp;&nbsp;&nbsp;<font color="red" size="4">7折</font></span><br/>
-											<span>起批量：3-9&nbsp;&nbsp;&nbsp;10-199&nbsp;&nbsp;&nbsp;≥200</span>
+									
+								   <div class="right">
+								       <table width="300">
+								            <tr align="center">
+								               <td><span class="price-new"><font size="3" color="red">$<s:property
+											value="#request.commodity.fcPrice" /></font></span></td>
+								               <td><font color="red" size="5" >9折</font></td>
+								               <td><font color="red" size="5">8折</font></td>
+								                <td><font color="red" size="5">7折</font></td>
+								            </tr>
+								            <tr align="center">
+								            <td>起批量：</td>
+								               <td><font size="3">3-9</font></td>
+								               <td><font size="3">10-199</font></td>
+								                <td><font size="3">≥200</font></td>
+								            </tr>
+								       </table>
+								   </div>
+									
 								</div>
 								<br>
 								<div class="cart">
@@ -116,15 +130,7 @@
 											 <c:if test="${requestScope.commodity.commodityLeaveNum>0 }">&nbsp;<a class="button" style="width:120px;"  href="javascript:void(0)" onclick="document.getElementById('addToCart').submit()"><span>加入购物车</span></a></c:if>
 											</s:form>
 									</div>
-									<div>
-										<span>&nbsp;&nbsp;&nbsp;- OR -&nbsp;&nbsp;&nbsp;</span>
-									</div>
-									<div>
-										<a class="wishlist"><img src="images/wishlist.png"
-											style="margin-top: 6px;" title="Add to Wish List" /></a> <a
-											class="compare"><img src="images/compare.png"
-											style="margin-top: 6px;" title="Add to Compare" /></a>
-									</div>
+									
 								</div>
 								<div class="review">
 									<div>

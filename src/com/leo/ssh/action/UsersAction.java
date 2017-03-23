@@ -84,6 +84,7 @@ public class UsersAction extends BaseAction implements ModelDriven<Users> {
 		if(olds.equals(users.getUserpasswork())){
 			users.setUserpasswork(news);
 			this.usersBiz.update(users);
+			session.remove(users);
 			return Action.SUCCESS;
 		}else{
 			return Action.ERROR;

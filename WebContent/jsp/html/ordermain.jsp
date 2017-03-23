@@ -25,9 +25,8 @@
 		<ul>
 			<li style="width: 0px;"><a></a></li>
 			<li><a href="<%=basePath%>jsp/html/index.jsp" class="home">首页</a></li>
-			<li><a href="<%=basePath%>jsp/html/updateUsers.jsp" class="account">我的帐号</a></li>
+			<li><a  class="account" onclick="javascript:location='/SSH04/preusersUpdate.action?userid=<s:property value="#session.users.userid" />';">我的帐号</a></li>
 			<li><a href="<%=basePath%>jsp/html/cart.jsp" class="cart">购物车</a></li>
-			<li><a class="checkout" href="<%=basePath%>jsp/html/showorder.jsp">我的订单</a></li>
 			<li style="float: right;"><a href="<%=basePath%>jsp/html/usersLogin.jsp" class="login">登录</a></li>
 			<li style="float: right;"><a class="register" href="<%=basePath%>jsp/html/register.jsp">注册</a></li>
 		</ul>
