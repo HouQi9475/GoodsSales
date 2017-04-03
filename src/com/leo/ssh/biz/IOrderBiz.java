@@ -2,10 +2,10 @@ package com.leo.ssh.biz;
 
 import java.util.List;
 
-import com.leo.ssh.domain.Order;
+import com.leo.ssh.domain.Orders;
 
 public interface IOrderBiz extends IBaseBiz{
-    public abstract Order saveOrder(final Order order);
-    public abstract List<Order> findAll();
-    public abstract Order findById(final int userid);
+    public abstract Orders saveOrder(final Orders order);
+    public abstract List<Orders> findAll();
+    public abstract Orders findById(final int userid);
 }

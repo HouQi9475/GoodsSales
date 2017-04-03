@@ -20,7 +20,7 @@
   <context-param>
      <param-name>contextConfigLocation</param-name>
      <param-value>
-         classpath*:applicationContext.xml
+         classpath*:spring/applicationContext.xml
      </param-value>
   </context-param>
   <!-- 设置spring框架中的openSessionInViewFilter过滤器，将事务控制范围扩大到一个请求级别 -->

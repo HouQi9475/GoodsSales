@@ -26,6 +26,8 @@ public class AdminsLoginAction extends BaseAction implements ModelDriven<Admins>
 
 	public String login() throws Exception{
 		Admins admins=this.adminsLoginBiz.adminlogin(this.admins.getAdminacount(), this.admins.getAdminpassword());
+		int rid=admins.getAdminroles().getRolesid();
+		this.getSession().put("rid", rid);
 		if(admins!=null){
 			this.getSession().put("admins", admins);
 			return Action.SUCCESS;

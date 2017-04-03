@@ -4,17 +4,14 @@
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
-	<constant name="struts.enable.DynamicMethodInvocation" value="false"></constant>
-	<constant name="struts.devMode" value="false" />
-	<constant name="struts.action.excludePattern" value="/dwr/.*,/dwr/test/.*" />
-	<constant name="struts.multipart.saveDir" value="/tmp"></constant>
-	<!-- 将struts2框架中ObjectFactory对象设置为由spring进行托管(action由spring管理) -->
-	<constant name="objectFactory" value="spring" />
-	<package name="default" namespace="/" extends="struts-default">
+	
+	<package name="qiantai" namespace="/" extends="struts-default">
 		<!-- <global-results> <result name="error"> <param name="location">/jsp/error.jsp</param> 
 			</result> </global-results> -->
 		<action name="show" class="commodityAction" method="show">
-			<result>/jsp/html/index.jsp</result>
+			<result name="success">/jsp/html/index.jsp</result>
+			<result name="errornum0">/jsp/html/index.jsp?codes=201</result>
+			
 		</action>
 		<action name="findByName" class="commodityAction" method="findByName">
 			<result>/jsp/html/index.jsp</result>
@@ -49,7 +46,7 @@
 				<param name="location">/jsp/html/index.jsp</param>
 			</result>
 			<result name="usersNotLogin">
-				<param name="location">/jsp/html/usersLogin.jsp?code=201</param>
+				<param name="location">/jsp/html/usersLogin.jsp?codes=201</param>
 			</result>
 			<result name="error" type="dispatcher">
 				<param name="location">../console/{1}Login.jsp?code=201</param>
@@ -77,62 +74,7 @@
 				<param name="location">jsp/showcommodityclass.jsp</param>
 			</result>
 		</action>
-		<action name="*_add" class="{1}Action" method="add">
-			<result name="input" type="redirect">
-				<param name="location">/jsp/console/modelFunctions/add{1}.jsp</param>
-			</result>
-			<result name="success">
-				<param name="location">/jsp/console/modelFunctions/add{1}.jsp</param>
-			</result>
-			<result name="usersLogin">
-				<param name="location">/jsp/html/usersLogin.jsp</param>
-			</result>
-			<result name="error">
-				<param name="location">/jsp/console/modelFunctions/add{1}.jsp</param>
-			</result>
-		</action>
-		<action name="*_preadd" class="{1}Action" method="preadd">
-			<result name="success" type="dispatcher">
-				<param name="location">/jsp/console/modelFunctions/add{1}.jsp</param>
-			</result>
-		</action>
-		<action name="*_findByPages" class="{1}Action" method="findByPages">
-			<result name="input" type="dispatcher">
-				<param name="location">/jsp/console/modelFunctions/show{1}.jsp</param>
-			</result>
-			<result name="success" type="dispatcher">
-				<param name="location">/jsp/console/modelFunctions/show{1}.jsp</param>
-			</result>
-			<result name="error" type="dispatcher">
-				<param name="location">/jsp/console/modelFunctions/show{1}.jsp</param>
-			</result>
-		</action>
-		<action name="*_findByPage" class="{1}Action" method="findByPages">
-			<result name="success" type="dispatcher">
-				<param name="location">/jsp/console/modelFunctions/showcommodityclasscontext.jsp</param>
-			</result>
-		</action>
-		<action name="delete_*" class="{1}Action" method="delete">
-			<result name="success" type="dispatcher">
-				<param name="location">/jsp/console/modelFunctions/show{1}.jsp</param>
-			</result>
-		</action>
-		<action name="delBatch_*" class="{1}Action" method="delBatchClass">
-			<result name="success" type="dispatcher">
-				<param name="location">/jsp/console/modelFunctions/show{1}.jsp</param>
-			</result>
-		</action>
-		<action name="preupdate_*" class="{1}Action" method="preupdate">
-			<result name="success" type="dispatcher">
-				<param name="location">jsp/console/modelFunctions/update{1}.jsp</param>
-			</result>
-		</action>
-
-		<action name="update_*" class="{1}Action" method="update">
-			<result name="success" type="dispatcher">
-				<param name="location">jsp/console/modelFunctions/show{1}.jsp</param>
-			</result>
-		</action>
+		
 		<action name="usersUpdate" class="usersAction" method="update">
 			<result name="success" type="dispatcher">
 				<param name="location">/jsp/html/index.jsp</param>
@@ -148,23 +90,12 @@
 			<result name="success">/jsp/html/showorder.jsp</result>
 			<result name="error">/jsp/html/usersLogin.jsp</result>
 		</action>
-		<action name="ordersfindall" class="orderAction" method="findAllOrders">
-			<result name="success">/jsp/console/modelFunctions/showorders.jsp
-			</result>
-		</action>
-		<action name="setstatus" class="orderAction" method="setStatus">
-			<result name="success">/jsp/console/modelFunctions/showorders.jsp
-			</result>
-		</action>
+		
 		<action name="orderitemfindall" class="orderitemAction" method="findAll">
 			<result name="error">/jsp/html/usersLogin.jsp</result>
 			<result name="success">/jsp/html/ordermain.jsp</result>
 		</action>
-		<action name="findbypage_orders" class="orderitemAction"
-			method="findAll">
-			<result name="success">/jsp/console/modelFunctions/showorderitems.jsp
-			</result>
-		</action>
+		
 		<action name="findByClass" class="commodityAction" method="findByClass">
 		   <result name="success">/jsp/html/categories.jsp</result>
 		</action>

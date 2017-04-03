@@ -5,6 +5,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>欢迎登录商品批发销售网站</title>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
 <link rel="stylesheet" type="text/css" href="/SSH04/css/global.css">
 <link rel="stylesheet" type="text/css" href="/SSH04/css/console_login.css">
 <script type="application/javascript" src="/SSH04/scripts/console_login.js"></script>
@@ -55,8 +60,8 @@ function checkForm(){
 </head>
 <body>
 <%
-   if(request.getParameter("code")!=null){
-	   int code=Integer.parseInt(request.getParameter("code").toString());
+   if(request.getParameter("codes")!=null){
+	   int code=Integer.parseInt(request.getParameter("codes").toString());
 	   switch(code){
 	   case 201:
 		   out.print("<script>alert('用户名或密码错误！')</script>");
@@ -92,7 +97,7 @@ function checkForm(){
     </tr>
     <tr><td height="25" colspan="2" align="center" valign="middle"><input type="submit" name="btnLogin" id="btnLogin" value="立即登录" class="btn"></td></tr>
     <tr>
-      <td height="25" colspan="2" align="center" valign="middle"><a href="register.jsp"><input type="button" name="btnLogin" id="btnLogin" value="注册用户" class="btn"></a></td>
+      <td height="25" colspan="2" align="center" valign="middle"><a href="<%=basePath%>jsp/html/register.jsp"><input type="button" name="btnLogin" id="btnLogin" value="注册用户" class="btn"></a></td>
     </tr>
   </table>
 </form>

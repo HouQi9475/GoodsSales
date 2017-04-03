@@ -29,7 +29,7 @@ public class UsersLoginAction extends BaseAction implements ModelDriven<Users> {
 		Users users=this.usersLoginBiz.usersLogin(this.users.getUseracount(), this.users.getUserpasswork());
 		if(users!=null){
 			this.getSession().put("users", users);
-			System.out.println(users.getOrders());
+			System.out.println(users.getOrderses());
 			return "usersLogin";
 		}else
 			return "usersNotLogin";

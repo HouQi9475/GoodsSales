@@ -111,8 +111,8 @@
 								            </tr>
 								            <tr align="center">
 								            <td>起批量：</td>
-								               <td><font size="3">3-9</font></td>
-								               <td><font size="3">10-199</font></td>
+								               <td><font size="3">10-99</font></td>
+								               <td><font size="3">100-199</font></td>
 								                <td><font size="3">≥200</font></td>
 								            </tr>
 								       </table>

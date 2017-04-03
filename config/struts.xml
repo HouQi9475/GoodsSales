@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="false"></constant>
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.action.excludePattern" value="/dwr/.*,/dwr/test/.*" />
+	<constant name="struts.multipart.saveDir" value="/tmp"></constant>
+	<!-- 将struts2框架中ObjectFactory对象设置为由spring进行托管(action由spring管理) -->
+	<constant name="objectFactory" value="spring" />
+
+	
+	<include file="struts_qiantai.xml"></include>
+	<include file="struts_houtai.xml"></include>
+</struts>

@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.leo.ssh.biz.IOrderBiz;
 import com.leo.ssh.dao.IOrderDao;
-import com.leo.ssh.domain.Order;
+import com.leo.ssh.domain.Orders;
 import com.leo.ssh.page.PageBean;
 
 public class OrderBizImpl implements IOrderBiz {
@@ -24,23 +24,23 @@ public class OrderBizImpl implements IOrderBiz {
 	@Override
 	public PageBean findByPage(String strHQL, int currentPage, int pageSizes, Object... params) {
 		// TODO Auto-generated method stub
-		return null;
+		return this.orderDao.selsectByPage(strHQL, currentPage, pageSizes, params);
 	}
 
 	@Override
-	public Order saveOrder(Order order) {
+	public Orders saveOrder(Orders order) {
 		// TODO Auto-generated method stub
 		return this.orderDao.insert(order);
 	}
 
 	@Override
-	public List<Order> findAll() {
+	public List<Orders> findAll() {
 		// TODO Auto-generated method stub
 		return this.orderDao.selectAll();
 	}
 
 	@Override
-	public Order findById(int userid) {
+	public Orders findById(int userid) {
 		// TODO Auto-generated method stub
 		return this.orderDao.selectById(userid);
 	}

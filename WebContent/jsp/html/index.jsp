@@ -6,6 +6,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>小商品批发销售</title>
 <%
@@ -17,9 +18,20 @@
 	href="<%=basePath%>jsp/html/css.css" />
 </head>
 <body>
-	<c:if test="${empty requestScope.lstCommodities }">
+<%
+   if(request.getParameter("codes")!=null){
+	   int code=Integer.parseInt(request.getParameter("codes").toString());
+	   switch(code){
+	   case 201:
+		   out.print("<script>alert('查询商品不存在！')</script>");
+	   break;
+	  
+	   }
+   }
+%>
+	<c:if test="${empty requestScope.commodityPage }">
 		<script>
-			location = "/SSH04/show.action";
+			location = "<%=basePath%>show.action";
 		</script>
 	</c:if>
 	<div class="menu">
@@ -31,7 +43,7 @@
 			<li class="active"><a href="<%=basePath%>jsp/html/index.jsp"
 				class="home">首页</a></li>
 			<li><a class="account"
-				onclick="javascript:location='/SSH04/preusersUpdate.action?userid=<s:property value="#session.users.userid" />';">我的帐号</a></li>
+				onclick="javascript:location='<%=basePath%>preusersUpdate.action?userid=<s:property value="#session.users.userid" />';">我的帐号</a></li>
 			<li><a href="<%=basePath%>jsp/html/cart.jsp" class="cart">购物车</a></li>
 			<li><a class="checkout"
 				href="<%=basePath%>jsp/console/adminsLogin.jsp">后台管理</a></li>
@@ -54,13 +66,13 @@
 		<ul>
 			<s:iterator var="bc" value="#session.lstBigclass">
 				<li><a
-					href="/SSH04/findByClass.action?commodityclassid=<s:property value="#bc.bigclassid"/>"><s:property
+					href="<%=basePath%>findByClass.action?commodityclassid=<s:property value="#bc.bigclassid"/>"><s:property
 							value="#bc.bigclassname" /></a>
 					<div>
 						<ul>
 							<s:iterator var="c" value="#bc.commodityclasses">
 								<li><a
-									href="/SSH04/findBySmallClass.action?smallcommodityclassid=<s:property value="#c.commodityClassId"/>"><s:property
+									href="<%=basePath%>findBySmallClass.action?smallcommodityclassid=<s:property value="#c.commodityClassId"/>"><s:property
 											value="#c.commodityClassName" /></a></li>
 							</s:iterator>
 						</ul>
@@ -80,20 +92,25 @@
 		-->
 	</div>
 
-
+    <div class="heading" style="margin-left: 200px;">
+        <form id="find" action="<%=basePath%>show.action" method="post">
+             <input type="text" name="findBycommodityName"/>&nbsp;&nbsp;<a href="javascript:void(0)"
+					onclick="document.getElementById('find').submit()">搜索商品</a>
+        </form>
+    </div>
 	<div class="container">
 		<div class="text_box_left">精选商品</div>
 		<div class="box-product">
 
 
-			<c:forEach items="${requestScope.lstCommodities }" var="commodity">
+			<c:forEach items="${requestScope.commodityPage.list }" var="commodity">
 
 				<div>
 					<div class="showhim">
 						<div class="image">
 							<a
 								href="commodity_findById?commodityId=${commodity.commodityId }"><img
-								src="http://localhost:8080/SSH04/images/goodsimage/${commodity.image }"
+								src="<%=basePath%>images/goodsimage/${commodity.image }"
 								alt="iMac" />
 								<div class="showme">
 									<div class="description_featured" style="min-height: 110px;">
@@ -119,6 +136,19 @@
 
 			</c:forEach>
 		</div>
+		<table class="infobar" border="1">
+			<tr align="center">
+				<td height="25">共搜索到:${requestScope.commodityPage.totalRows} 件商品
+					&nbsp; &nbsp; 当前:第${requestScope.commodityPage.currentPage}/
+					${requestScope.commodityPage.totalPages}页 &nbsp; &nbsp; 请选择：第 <c:forEach
+						begin="1" end="${requestScope.commodityPage.totalPages}" var="i">
+                 &nbsp;<a
+							href="<%=basePath%>show.action?currentPage=${i }">${i }
+						</a>&nbsp;
+              </c:forEach>页
+				</td>
+			</tr>
+		</table>
 	</div>
 	<br>
 </body>

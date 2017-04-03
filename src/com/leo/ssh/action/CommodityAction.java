@@ -30,7 +30,7 @@ import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ModelDriven;
 
-public class CommodityAction extends BaseAction implements RequestAware,ModelDriven<Commodity> {
+public class CommodityAction extends BaseAction implements RequestAware, ModelDriven<Commodity> {
 
 	private Commodity commodity;
 	private ICommodityclassBiz commodityclassBiz;
@@ -48,14 +48,25 @@ public class CommodityAction extends BaseAction implements RequestAware,ModelDri
 	private int commodityid;
 	private int commodityclassid;
 	private int smallcommodityclassid;
-
+	private String findBycommodityName;
 	
+
+	public String getFindBycommodityName() {
+		return findBycommodityName;
+	}
+
+	public void setFindBycommodityName(String findBycommodityName) {
+		this.findBycommodityName = findBycommodityName;
+	}
+
 	public void setBigcommodityclassBiz(IBigcommodityclassBiz bigcommodityclassBiz) {
 		this.bigcommodityclassBiz = bigcommodityclassBiz;
 	}
+
 	public void setCommodityclassid(int commodityclassid) {
 		this.commodityclassid = commodityclassid;
 	}
+
 	public int getCommodityid() {
 		return commodityid;
 	}
@@ -63,6 +74,7 @@ public class CommodityAction extends BaseAction implements RequestAware,ModelDri
 	public void setSmallcommodityclassid(int smallcommodityclassid) {
 		this.smallcommodityclassid = smallcommodityclassid;
 	}
+
 	public void setCommodityid(int commodityid) {
 		this.commodityid = commodityid;
 	}
@@ -156,149 +168,156 @@ public class CommodityAction extends BaseAction implements RequestAware,ModelDri
 		// TODO Auto-generated method stub
 		return this.commodity;
 	}
-	public String checkout() throws Exception{
-		Map session=(Map)ActionContext.getContext().getSession();
-		Cart cart=(Cart) session.get("cart");
-		if(cart==null){
+
+	public String checkout() throws Exception {
+		Map session = (Map) ActionContext.getContext().getSession();
+		Cart cart = (Cart) session.get("cart");
+		if (cart == null) {
 			this.addActionError("空订单别乱提交！");
 			return "index";
 		}
 		return Action.SUCCESS;
 	}
-	public String addToCart() throws Exception{
-		Map session=(Map)ActionContext.getContext().getSession();
-		Users users=(Users) session.get("users");
-		if(users==null){
+
+	public String addToCart() throws Exception {
+		Map session = (Map) ActionContext.getContext().getSession();
+		Users users = (Users) session.get("users");
+		if (users == null) {
 			return Action.ERROR;
 		}
-		Commodity commodity=this.commodityBiz.findById(commodityid);
-		Orderitem orderitem=new Orderitem();
-		if(quantity>commodity.getCommodityLeaveNum()){
+		Commodity commodity = this.commodityBiz.findById(commodityid);
+		Orderitem orderitem = new Orderitem();
+		if (quantity > commodity.getCommodityLeaveNum()) {
 			orderitem.setQuantity(commodity.getCommodityLeaveNum());
-		}else{
+		} else {
 			orderitem.setQuantity(quantity);
 		}
 		orderitem.setCommodity(commodity);
-		
-		System.out.println("购物车数量"+quantity);
-		
-		Cart cart=(Cart) session.get("cart");
-		if(cart==null){
-			cart=new Cart();
+
+		System.out.println("购物车数量" + quantity);
+
+		Cart cart = (Cart) session.get("cart");
+		if (cart == null) {
+			cart = new Cart();
 		}
 		cart.addCart(commodityid, orderitem);
-		int n=cart.getTotalPrice();
-		int y=cart.yuanjia();
+		int n = cart.getTotalPrice();
+		int y = cart.yuanjia();
 		session.put("y", y);
 		session.put("n", n);
 		System.out.println(n);
 		session.put("cart", cart);
 		return Action.SUCCESS;
 	}
-	public String updateCart() throws Exception{
-		
-		Map session=(Map)ActionContext.getContext().getSession();
-		Cart cart=(Cart) session.get("cart");
-		Commodity comm=commodityBiz.findById(commodityid);
-		System.out.println("更新数量"+quantity);
-		System.out.println("该商品的名称："+comm.getCommodityName());
-		if(quantity>comm.getCommodityLeaveNum()){
+
+	public String updateCart() throws Exception {
+
+		Map session = (Map) ActionContext.getContext().getSession();
+		Cart cart = (Cart) session.get("cart");
+		Commodity comm = commodityBiz.findById(commodityid);
+		System.out.println("更新数量" + quantity);
+		System.out.println("该商品的名称：" + comm.getCommodityName());
+		if (quantity > comm.getCommodityLeaveNum()) {
 			cart.updateCart(commodityid, comm.getCommodityLeaveNum());
-		}else{
-			cart.updateCart(commodityid, quantity);	
+		} else {
+			cart.updateCart(commodityid, quantity);
 		}
-		
-		
-		int n=cart.getTotalPrice();
-		int y=cart.yuanjia();
+
+		int n = cart.getTotalPrice();
+		int y = cart.yuanjia();
 		session.put("y", y);
 		session.put("n", n);
 		session.put("cart", cart);
 		return Action.SUCCESS;
 	}
-	public String deleteCart() throws Exception{
-		Map session=(Map)ActionContext.getContext().getSession();
-		Cart cart=(Cart) session.get("cart");
+
+	public String deleteCart() throws Exception {
+		Map session = (Map) ActionContext.getContext().getSession();
+		Cart cart = (Cart) session.get("cart");
 		cart.deleteCart(commodityid);
-		int n=cart.getTotalPrice();
-		int y=cart.yuanjia();
+		int n = cart.getTotalPrice();
+		int y = cart.yuanjia();
 		session.put("y", y);
 		session.put("n", n);
 		session.put("cart", cart);
 		return Action.SUCCESS;
 	}
-	public String removeCart() throws Exception{
-		Map session=(Map)ActionContext.getContext().getSession();
+
+	public String removeCart() throws Exception {
+		Map session = (Map) ActionContext.getContext().getSession();
 		session.remove("cart");
 		session.remove("n");
 		session.remove("y");
 		return Action.SUCCESS;
-		
+
 	}
-    public String show() throws Exception{
-    	Map session=(Map)ActionContext.getContext().getSession();
-    	List<Bigcommodityclass> lstBigclass=this.bigcommodityclassBiz.findAll();
-    	List<Commodity> lstCommodities = this.commodityBiz.findAll();
-    	this.getRequest().setAttribute("lstCommodities", lstCommodities);
-    	request.put("lstCommodities", lstCommodities);
-    	session.put("lstBigclass", lstBigclass);
-    	return Action.SUCCESS;
-    }
-    public String findByClass() throws Exception{
-    	Bigcommodityclass bcc=this.bigcommodityclassBiz.findById(commodityclassid);
-    	String HQL="select c from Commodity as c where c.commodityclass.bigcommodityclass.bigclassid=?";
-    	int bigclassid=bcc.getBigclassid();
-    	List<Commodity> lstCommodity=this.commodityBiz.findByHQL(HQL, bigclassid);
-    	//System.out.println("大小:"+lstCommodity.size());
-    	Map session=(Map)ActionContext.getContext().getSession();
-    	session.put("bcc", bcc);
-    	session.put("lstCommodity", lstCommodity);
-    	return Action.SUCCESS;
-    }
-    public String findBySmallClass() throws Exception{
-    	System.out.println("小类别："+smallcommodityclassid);
-    	String HQL="select c from Commodity as c where c.commodityclass.commodityClassId=?";
-    	List<Commodity> lstCommodity=this.commodityBiz.findByHQL(HQL, smallcommodityclassid);
-    	Map session=(Map)ActionContext.getContext().getSession();
-    	session.put("lstCommodity", lstCommodity);
-    	return Action.SUCCESS;
-    }
-	public String findById() throws Exception{
-		int id=this.commodity.getCommodityId();
-		Commodity commodity=this.commodityBiz.findById(id);
+
+	public String findByClass() throws Exception {
+		Bigcommodityclass bcc = this.bigcommodityclassBiz.findById(commodityclassid);
+		String HQL = "select c from Commodity as c where c.commodityclass.bigcommodityclass.bigclassid=?";
+		int bigclassid = bcc.getBigclassid();
+		List<Commodity> lstCommodity = this.commodityBiz.findByHQL(HQL, bigclassid);
+		// System.out.println("大小:"+lstCommodity.size());
+		Map session = (Map) ActionContext.getContext().getSession();
+		session.put("bcc", bcc);
+		session.put("lstCommodity", lstCommodity);
+		return Action.SUCCESS;
+	}
+
+	public String findBySmallClass() throws Exception {
+		System.out.println("小类别：" + smallcommodityclassid);
+		String HQL = "select c from Commodity as c where c.commodityclass.commodityClassId=?";
+		List<Commodity> lstCommodity = this.commodityBiz.findByHQL(HQL, smallcommodityclassid);
+		Map session = (Map) ActionContext.getContext().getSession();
+		session.put("lstCommodity", lstCommodity);
+		return Action.SUCCESS;
+	}
+
+	public String findById() throws Exception {
+		int id = this.commodity.getCommodityId();
+		Commodity commodity = this.commodityBiz.findById(id);
 		this.getRequest().setAttribute("commodity", commodity);
 		return Action.SUCCESS;
 	}
-	public String findByid() throws Exception{
-		int cid=this.commodity.getCommodityId();
+
+	public String findByid() throws Exception {
+		int cid = this.commodity.getCommodityId();
 		System.out.println(cid);
-		Commodity newcommodity=this.commodityBiz.findById(cid);
+		Commodity newcommodity = this.commodityBiz.findById(cid);
 		request.put("commodity", newcommodity);
 		return Action.SUCCESS;
 	}
+
 	public String findAll() throws Exception {
 		List<Commodity> lstCommodities = this.commodityBiz.findAll();
 		this.getRequest().setAttribute("lstCommodities", lstCommodities);
-		
+
 		return Action.SUCCESS;
 	}
-    public String preupdate() throws Exception{
-    	int commodityId=this.commodity.getCommodityId();
-    	Commodity commodity=this.commodityBiz.findById(commodityId);
-    	this.getRequest().setAttribute("commodity", commodity);
-    	List<Commodityclass> lstClass = this.commodityclassBiz.findAll();
+
+	public String preupdate() throws Exception {
+		int commodityId = this.commodity.getCommodityId();
+		Commodity commodity = this.commodityBiz.findById(commodityId);
+		this.getRequest().setAttribute("commodity", commodity);
+		List<Commodityclass> lstClass = this.commodityclassBiz.findAll();
 		this.getRequest().setAttribute("lstClass", lstClass);
-    	return Action.SUCCESS;
-    }
-    public String update() throws Exception{
-    	this.commodityBiz.update(commodity);
-    	return Action.SUCCESS;
-    }
-    public String delete() throws Exception{
-    	int commodityId=this.commodity.getCommodityId();
-    	this.commodityBiz.delete(commodityId);
-    	return Action.SUCCESS;
-    }
+		return Action.SUCCESS;
+	}
+
+	public String update() throws Exception {
+		System.out.println("更新时图片：" + commodity.getImage());
+		System.out.println("更新时名字：" + commodity.getCommodityName());
+		System.out.println("更新时时间：" + commodity.getRegTime());
+		this.commodityBiz.update(commodity);
+		return Action.SUCCESS;
+	}
+
+	public String delete() throws Exception {
+		int commodityId = this.commodity.getCommodityId();
+		this.commodityBiz.delete(commodityId);
+		return Action.SUCCESS;
+	}
+
 	public String preadd() throws Exception {
 		List<Commodityclass> lstClasss = commodityclassBiz.findAll();
 		getRequest().setAttribute("lstClasss", lstClasss);
@@ -358,20 +377,20 @@ public class CommodityAction extends BaseAction implements RequestAware,ModelDri
 		}
 		boolean flag = commodityBiz.add(commodity);
 		if (flag) {
-			
+
 			this.clearMessages();
 			this.addActionMessage("<script>alert('商品添加成功！');</script>");
-            this.commodity.setCommodityName(null);
-            this.commodity.setCommodityclass(null);
-            this.commodity.setCommodityDepict(null);
-            this.commodity.setCommodityPrice(null);
-            this.commodity.setCommodityAmount(null);
-            this.commodity.setCommodityLeaveNum(null);
-            this.commodity.setRegTime(null);
-            this.commodity.setManufacturer(null);
-            this.commodity.setFcPrice(null);
+			this.commodity.setCommodityName(null);
+			this.commodity.setCommodityclass(null);
+			this.commodity.setCommodityDepict(null);
+			this.commodity.setCommodityPrice(null);
+			this.commodity.setCommodityAmount(null);
+			this.commodity.setCommodityLeaveNum(null);
+			this.commodity.setRegTime(null);
+			this.commodity.setManufacturer(null);
+			this.commodity.setFcPrice(null);
 			return Action.SUCCESS;
-			
+
 		} else {
 			this.clearMessages();
 			this.addActionMessage("商品添加失败！");
@@ -388,12 +407,37 @@ public class CommodityAction extends BaseAction implements RequestAware,ModelDri
 		return Action.SUCCESS;
 	}
 
+	public String show() throws Exception {
+		String strHQL = "select g from Commodity as g where";
+		if(findBycommodityName!=null){
+			strHQL=strHQL+" commodityName like'%"+findBycommodityName+"%' or commodityDepict like '%"+findBycommodityName+"%'"+" and ";
+		}
+		strHQL = strHQL.substring(0, strHQL.length() - 5);
+		System.out.println("首页sql:"+strHQL);
+		Map session = (Map) ActionContext.getContext().getSession();
+		List<Bigcommodityclass> lstBigclass = this.bigcommodityclassBiz.findAll();
+		session.put("lstBigclass", lstBigclass);
+		/*List<Commodity> lstCommodities = this.commodityBiz.findAll();
+		this.getRequest().setAttribute("lstCommodities", lstCommodities);
+		request.put("lstCommodities", lstCommodities);*/
+		Object[] params = new Object[] {};
+		if (currentPage == 0) {
+			currentPage = 1;
+		}
+		PageBean pageBean = commodityBiz.findByPage(strHQL, currentPage, 8, params);
+		System.out.println("商品数量："+pageBean.getTotalRows());
+		if(pageBean.getTotalRows()==0){
+			return Action.ERROR+"num0";
+		}
+		this.getRequest().setAttribute("commodityPage", pageBean);
+		return Action.SUCCESS;
+	}
+
 	public String findByPages() throws Exception {
 
 		String strHQL = "select g from Commodity as g where";
 		// 条件1：按照种类进行筛选
-		if (commodity.getCommodityclass() == null
-				|| commodity.getCommodityclass().getCommodityClassId() == 0) {
+		if (commodity.getCommodityclass() == null || commodity.getCommodityclass().getCommodityClassId() == 0) {
 			System.out.println("条件1：类别无限制");
 		} else {
 			System.out.println("条件1：种类编号为" + commodity.getCommodityclass().getCommodityClassId());

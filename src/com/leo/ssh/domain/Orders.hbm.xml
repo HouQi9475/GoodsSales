@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 2017-2-8 0:23:43 by Hibernate Tools 4.0.1.Final -->
+<!-- Generated 2017-4-3 19:26:37 by Hibernate Tools 4.0.1.Final -->
 <hibernate-mapping>
-    <class name="com.leo.ssh.domain.Order" table="order" catalog="shop">
+    <class name="com.leo.ssh.domain.Orders" table="orders" catalog="shop">
         <id name="orderid" type="java.lang.Integer">
             <column name="orderid" />
             <generator class="identity" />

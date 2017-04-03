@@ -66,10 +66,19 @@ function delBatchClass(checkBoxName){
 </script>
 </head>
 <body>
-<!-- 使用拉取模式获取Dept部门信息集合 -->
-<c:if test="${empty requestScope.orders.list }">
-	<script>location="/SSH04/ordersfindall.action";</script>
-</c:if>
+<%
+   if(request.getParameter("codes")!=null){
+	   int code=Integer.parseInt(request.getParameter("codes").toString());
+	   switch(code){
+	   case 201:
+		   out.print("<script>alert('没有未发货订单！')</script>"); 
+		  out.print("没有未发货订单！");
+	   break;
+	  
+	   }
+   }
+%>
+
 <h3>订单信息</h3>
 
 
@@ -86,20 +95,25 @@ function delBatchClass(checkBoxName){
 		<td>状态</td>	
 		<td style="background-color: orange;">操作</td>
 	</tr> 
-	<c:forEach items="${requestScope.orders.list }" var="orders">
+	<c:forEach items="${requestScope.orderstatus.list }" var="orders">
 	<tr style="height: 25px; text-align:center; background-color: lavender;">
-	   
+	  
 		<td style="width:5%;"><input type="hidden" name="orderid" value="${orders.orderid }"/>${orders.orderid }</td>
 		<td style="width:13%;">${orders.orderdate }</td>
 		<td style="width:6%;">${orders.users.username }</td>
 		<td style="width:10%;">${orders.totalPrice }</td>
-		<td style="width:10%;">${orders.name }</td>
+		<td style="width:8%;">${orders.name }</td>
 		<td style="width:11%;">${orders.phone }</td>
-		<td style="width:13%;">${orders.address }</td>
+		<td style="width:10%;">${orders.address }</td>
 		<td style="width:9%;"><c:if test="${orders.status==1 }">已发货</c:if>
 					            <c:if test="${orders.status==0 }">未发货</c:if></td>
-		<td style="width:35%;">
-		    
+		<td style="width:45%;">
+		    <c:if test="${orders.status==1 }">
+			<input type="button" value="发货" disabled="disabled"/>&nbsp;
+			</c:if>
+			<c:if test="${orders.status==0 }">
+			<input type="button" value="发货" onclick="javascript:location='/SSH04/setstatus.action?orderid=${orders.orderid }';" />&nbsp;
+			</c:if>
 			<input type="button" value="查看详情" onclick="javascript:location='/SSH04/findbypage_orders.action?orderid=${orders.orderid }';"/>
 		</td>		
 	</tr>	
@@ -107,10 +121,10 @@ function delBatchClass(checkBoxName){
 </table>
 <table class="infobar">
 			<tr>
-				<td height="25">总共:${requestScope.orders.totalRows} 条记录
-					&nbsp; &nbsp; 当前:第${requestScope.orders.currentPage}/
-					${requestScope.orders.totalPages}页 &nbsp; &nbsp; 请选择：第 <c:forEach
-						begin="1" end="${requestScope.orders.totalPages}" var="i">
+				<td height="25">总共:${requestScope.orderstatus.totalRows} 条记录
+					&nbsp; &nbsp; 当前:第${requestScope.orderstatus.currentPage}/
+					${requestScope.orderstatus.totalPages}页 &nbsp; &nbsp; 请选择：第 <c:forEach
+						begin="1" end="${requestScope.orderstatus.totalPages}" var="i">
                  &nbsp;<a
 							href="/SSH04/ordersfindall.action?currentPage=${i }">${i }
 						</a>&nbsp;

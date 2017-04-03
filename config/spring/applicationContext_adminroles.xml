@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	                    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	                    http://www.springframework.org/schema/aop
+	                    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+	                    http://www.springframework.org/schema/tx
+	                    http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+	
+	<bean name="adminroles" class="com.leo.ssh.domain.Adminroles"/>
+	
+	<bean name="adminRolesDao" class="com.leo.ssh.dao.impl.AdminRolesDaoImpl">
+	   <property name="sessionFactory">
+	       <!-- ref中的“sessionFactory”是spring托管的sessionFactory -->
+	       <ref bean="sessionFactory"/>
+	  </property>
+	</bean>
+	<bean name="adminRolesBiz" class="com.leo.ssh.biz.impl.AdminRolesBizImpl">
+	   <property name="adminRolesDao">
+	      <ref bean="adminRolesDao"/>
+	   </property>
+	</bean>
+	
+	<bean name="adminRolesAction" class="com.leo.ssh.action.AdminRolesAction" scope="prototype">
+	   <property name="adminroles">
+	      <ref bean="adminroles"/>
+	   </property>
+	   <property name="adminRolesBiz">
+	     <ref bean="adminRolesBiz"/>
+	   </property>
+	</bean>
+	
+</beans>

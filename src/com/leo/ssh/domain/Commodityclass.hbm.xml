@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 2017-2-8 0:23:43 by Hibernate Tools 4.0.1.Final -->
+<!-- Generated 2017-4-3 19:26:37 by Hibernate Tools 4.0.1.Final -->
 <hibernate-mapping>
     <class name="com.leo.ssh.domain.Commodityclass" table="commodityclass" catalog="shop">
         <id name="commodityClassId" type="java.lang.Integer">
             <column name="commodityClassID" />
             <generator class="identity" />
         </id>
-        <many-to-one name="bigcommodityclass" class="com.leo.ssh.domain.Bigcommodityclass" fetch="select" lazy="false">
+        <many-to-one name="bigcommodityclass" class="com.leo.ssh.domain.Bigcommodityclass" fetch="select">
             <column name="bigclass" not-null="true" />
         </many-to-one>
         <property name="commodityClassName" type="string">

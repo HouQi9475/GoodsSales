@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="/struts-tags"  prefix="s"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -106,16 +107,18 @@ a{
 <body>
 <div id="container">
 		<ul id="menu">
-			<li id="menuitem"><a href="/SSH04/admins_preadd.action" target="userManagerDisplay"><div name="item" id="item0" class="item"
+		    <s:if test="#session.rid==1">
+		    <li id="menuitem"><a href="/SSH04/admins_preadd.action" target="userManagerDisplay"><div name="item" id="item0" class="item"
 					onMouseOver="javascript:itemHover(this)"
 					onMouseOut="javascript:itemOut(this);"
 					onClick="javascript:itemSelected(0);">添加管理员信息</div></a></li>
             <li><div id="splitLine"></div></li>
+			
 			<li id="menuitem"><a href="../modelFunctions/showadmins.jsp" target="userManagerDisplay"><div name="item" id="item1" class="item"
 					onMouseOver="javascript:itemHover(this)"
 					onMouseOut="javascript:itemOut(this);"
 					onClick="javascript:itemSelected(1);">管理员信息管理</div></a></li>
-                     <li><div id="splitLine"></div></li>
+                     <li><div id="splitLine"></div></li></s:if>
 			<li id="menuitem"><a href="../modelFunctions/showusers.jsp" target="userManagerDisplay"><div name="item" id="item2" class="item"
 					onMouseOver="javascript:itemHover(this)"
 					onMouseOut="javascript:itemOut(this);"

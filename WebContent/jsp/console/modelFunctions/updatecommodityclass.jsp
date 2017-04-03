@@ -41,10 +41,6 @@ a {
 	<div id="container">
 
 		<h3>更新类别信息</h3>
-		<a href="#"
-			onclick="javascript:location='/SSH04/jsp/console/modelFunctions/showcommodityclass.jsp';">查询类别信息</a>&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="#"
-			onclick="javascript:location='/SSH2Demo/jsp/searchDept.jsp';">(高级)筛选条件查询</a>
 		<form id="form01" name="form01" method="post"
 			action="/SSH04/update_commodityclass.action">
 			<table class="deptTable">

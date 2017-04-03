@@ -43,10 +43,6 @@ a {
 <body>
 	<div id="container">
 		<h3>更新商品信息</h3>
-		<a href="#"
-			onclick="javascript:location='/SSH04/jsp/console/modelFunctions/showcommodityclass.jsp';">查询类别信息</a>&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="#"
-			onclick="javascript:location='/SSH2Demo/jsp/searchDept.jsp';">(高级)筛选条件查询</a>
 		<form id="form01" name="form01" method="post"
 			action="/SSH04/update_commodity.action">
 			<table class="deptTable">
@@ -67,7 +63,7 @@ a {
 				<tr>
 					<td class="title">商品类别：</td>
 					<td><select id="commodityclass.commodityClassId" name="commodityclass.commodityClassId">
-					         <option value="${requestScope.commodity.commodityClass.commodityClassId }">${requestScope.commodity.commodityClass.commodityClassName} </option>
+					         <option value="${requestScope.commodity.commodityclass.commodityClassId }">${requestScope.commodity.commodityclass.commodityClassName} </option>
 							<c:forEach items="${requestScope.lstClass }" var="classes">
 								<option value="${classes.commodityClassId }">${classes.commodityClassName }</option>
 							</c:forEach>
@@ -132,6 +128,7 @@ a {
 						id="image" name="image"
 						value="${requestScope.commodity.image}" /></td>
 				</tr>
+				<tr>
 					<td colspan="2"><input type="submit" value="更新商品" /></td>
 				</tr>
 			</table>

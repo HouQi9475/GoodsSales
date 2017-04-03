@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	                    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	                    http://www.springframework.org/schema/aop
+	                    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+	                    http://www.springframework.org/schema/tx
+	                    http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+	
+	<bean name="bigcommodityclass" class="com.leo.ssh.domain.Bigcommodityclass"/>
+	
+	<bean name="bigcommodityclassDao" class="com.leo.ssh.dao.impl.BigcommodityclassDaoImpl">
+	   <property name="sessionFactory">
+	       <!-- ref中的“sessionFactory”是spring托管的sessionFactory -->
+	       <ref bean="sessionFactory"/>
+	    </property>
+	</bean>
+	<bean name="bigcommodityclassBiz" class="com.leo.ssh.biz.impl.BigcommodityclassBizImpl">
+	   <property name="bigcommodityclassDao">
+	     <ref bean="bigcommodityclassDao"/>
+	   </property>
+	</bean>
+	
+	<bean name="bigcommodityclassAction" class="com.leo.ssh.action.BigcommodityclassAction" scope="prototype">
+	  <property name="bigcommodityclass">
+	     <ref bean="bigcommodityclass"/>
+	  </property>
+	  <property name="bigcommodityclassBiz">
+	     <ref bean="bigcommodityclassBiz"/>
+	  </property>
+	</bean>
+	
+</beans>

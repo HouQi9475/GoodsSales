@@ -78,7 +78,8 @@
 										name="quantity" value="<s:property value="value.quantity"/>"
 										size="3" /> <input type="hidden" id="commodityid"
 										name="commodityid"
-										value="<s:property value="#request.commodity.commodityId" />">
+										value="<s:property
+												value="value.commodity.commodityId" />">
 									</td>
 									<td class="price">$<s:property
 											value="value.commodity.fcPrice" /></td>

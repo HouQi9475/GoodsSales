@@ -1,17 +1,17 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 2017-2-8 0:23:43 by Hibernate Tools 4.0.1.Final -->
+<!-- Generated 2017-4-3 19:26:37 by Hibernate Tools 4.0.1.Final -->
 <hibernate-mapping>
     <class name="com.leo.ssh.domain.Orderitem" table="orderitem" catalog="shop">
         <id name="orderitemid" type="java.lang.Integer">
             <column name="orderitemid" />
             <generator class="identity" />
         </id>
-        <many-to-one name="commodity" class="com.leo.ssh.domain.Commodity" fetch="select" cascade="all">
+        <many-to-one name="commodity" class="com.leo.ssh.domain.Commodity" fetch="select">
             <column name="commodityID" not-null="true" />
         </many-to-one>
-        <many-to-one name="order" class="com.leo.ssh.domain.Order" fetch="select" cascade="all">
+        <many-to-one name="orders" class="com.leo.ssh.domain.Orders" fetch="select" cascade="all">
             <column name="orderid" not-null="true" />
         </many-to-one>
         <property name="quantity" type="java.lang.Integer">

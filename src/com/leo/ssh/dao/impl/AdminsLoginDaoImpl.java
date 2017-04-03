@@ -16,7 +16,9 @@ public class AdminsLoginDaoImpl extends HibernateGenericDao<Admins, String> impl
 			Object[] queryParams = {adminacount,adminpassword};//设置参数对象数组
 			List<Admins> list=selectByHQL(hql, queryParams);
 			if(list != null && list.size() > 0){//如果list集合不为空
+				System.out.println("管理员类型id："+list.get(0).getAdminroles().getRolesid());
 				return list.get(0);//返回List中的第一个存储对象
+				
 			}
 			
 		}

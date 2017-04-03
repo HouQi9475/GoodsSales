@@ -5,7 +5,8 @@ import java.util.Map;
 
 import com.leo.ssh.biz.IOrderBiz;
 import com.leo.ssh.biz.IOrderitemBiz;
-import com.leo.ssh.domain.Order;
+import com.leo.ssh.domain.Admins;
+import com.leo.ssh.domain.Orders;
 import com.leo.ssh.domain.Orderitem;
 import com.leo.ssh.domain.Users;
 import com.opensymphony.xwork2.Action;
@@ -58,27 +59,36 @@ public class OrderitemAction extends BaseAction implements ModelDriven<Orderitem
 		Map session=(Map)ActionContext.getContext().getSession();
 		Users users=(Users) session.get("users");
 		System.out.println(users.getUseracount());
-		Order order=(Order) session.get("order");
+		Orders order=(Orders) session.get("order");
 		System.out.println(order.getOrderid());
 		order.setUsers(users);
 		Orderitem orderitem=new Orderitem();
-		orderitem.setOrder(order);
+		orderitem.setOrders(order);
 		System.out.println(orderitem.getOrderitemid());
 		session.put("orderitem", orderitem);
 		return Action.SUCCESS;
 	}
-	
+	public String adminFindAll() throws Exception{
+		String sql1="select o from Orderitem as o where o.orders.orderid=?";
+		List<Orderitem> orderitems=orderitemBiz.findByHQL(sql1, orderid);
+		System.out.println("orderid="+orderid);
+		System.out.println(orderitems.size());
+		this.getRequest().setAttribute("orderitems", orderitems);
+		return Action.SUCCESS;
+	}
 	public String findAll() throws Exception{
 		Map session=(Map)ActionContext.getContext().getSession();
 		Users users=(Users) session.get("users");
 		if(users==null){
 			return Action.ERROR;
 		}
-		String sql1="select o from Orderitem as o where o.order.orderid=?";
-		List<Orderitem> orderitems=orderitemBiz.findByHQL(sql1, orderid);
-		System.out.println("orderid="+orderid);
-		System.out.println(orderitems.size());
-		this.getRequest().setAttribute("orderitems", orderitems);
-		return Action.SUCCESS;
+			String sql1="select o from Orderitem as o where o.orders.orderid=?";
+			List<Orderitem> orderitems=orderitemBiz.findByHQL(sql1, orderid);
+			System.out.println("orderid="+orderid);
+			System.out.println(orderitems.size());
+			this.getRequest().setAttribute("orderitems", orderitems);
+			return Action.SUCCESS;
+		
+		
 	}
 }

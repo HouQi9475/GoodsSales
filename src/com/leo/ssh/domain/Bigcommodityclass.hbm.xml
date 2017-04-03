@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 2017-2-8 0:23:43 by Hibernate Tools 4.0.1.Final -->
+<!-- Generated 2017-4-3 19:26:37 by Hibernate Tools 4.0.1.Final -->
 <hibernate-mapping>
     <class name="com.leo.ssh.domain.Bigcommodityclass" table="bigcommodityclass" catalog="shop">
         <id name="bigclassid" type="int">
@@ -11,7 +11,7 @@
         <property name="bigclassname" type="string">
             <column name="bigclassname" not-null="true" />
         </property>
-        <set name="commodityclasses" table="commodityclass" inverse="true" lazy="false" fetch="select">
+        <set name="commodityclasses" table="commodityclass" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="bigclass" not-null="true" />
             </key>

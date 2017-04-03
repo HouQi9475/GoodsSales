@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	
+	<package name="houtai" namespace="/" extends="struts-default">
+		<!-- <global-results> <result name="error"> <param name="location">/jsp/error.jsp</param> 
+			</result> </global-results> -->
+		<action name="*_add" class="{1}Action" method="add">
+			<result name="input" type="redirect">
+				<param name="location">/jsp/console/modelFunctions/add{1}.jsp</param>
+			</result>
+			<result name="success">
+				<param name="location">/jsp/console/modelFunctions/add{1}.jsp</param>
+			</result>
+			<result name="usersLogin">
+				<param name="location">/jsp/html/usersLogin.jsp</param>
+			</result>
+			<result name="error">
+				<param name="location">/jsp/console/modelFunctions/add{1}.jsp</param>
+			</result>
+		</action>
+		<action name="*_preadd" class="{1}Action" method="preadd">
+			<result name="success" type="dispatcher">
+				<param name="location">/jsp/console/modelFunctions/add{1}.jsp</param>
+			</result>
+		</action>
+		<action name="*_findByPages" class="{1}Action" method="findByPages">
+			<result name="input" type="dispatcher">
+				<param name="location">/jsp/console/modelFunctions/show{1}.jsp</param>
+			</result>
+			<result name="success" type="dispatcher">
+				<param name="location">/jsp/console/modelFunctions/show{1}.jsp</param>
+			</result>
+			<result name="error" type="dispatcher">
+				<param name="location">/jsp/console/modelFunctions/show{1}.jsp</param>
+			</result>
+		</action>
+		<action name="*_findByPage" class="{1}Action" method="findByPages">
+			<result name="success" type="dispatcher">
+				<param name="location">/jsp/console/modelFunctions/showcommodityclasscontext.jsp</param>
+			</result>
+		</action>
+		<action name="delete_*" class="{1}Action" method="delete">
+			<result name="success" type="dispatcher">
+				<param name="location">/jsp/console/modelFunctions/show{1}.jsp</param>
+			</result>
+		</action>
+		<action name="delBatch_*" class="{1}Action" method="delBatchClass">
+			<result name="success" type="dispatcher">
+				<param name="location">/jsp/console/modelFunctions/show{1}.jsp</param>
+			</result>
+		</action>
+		<action name="preupdate_*" class="{1}Action" method="preupdate">
+			<result name="success" type="dispatcher">
+				<param name="location">jsp/console/modelFunctions/update{1}.jsp</param>
+			</result>
+		</action>
+
+		<action name="update_*" class="{1}Action" method="update">
+			<result name="success" type="dispatcher">
+				<param name="location">jsp/console/modelFunctions/show{1}.jsp</param>
+			</result>
+		</action>
+		<action name="ordersfindall" class="orderAction" method="findAllOrders">
+			<result name="success">/jsp/console/modelFunctions/showorders.jsp
+			</result>
+		</action>
+		<action name="ordersfindByStatus" class="orderAction" method="ordersfindByStatus">
+			<result name="success">/jsp/console/modelFunctions/showordersByStatus.jsp
+			</result>
+			<result name="errorsum0">/jsp/console/modelFunctions/showordersByStatus.jsp?codes=201
+			</result>
+		</action>
+		<action name="setstatus" class="orderAction" method="setStatus">
+			<result name="success" type="redirectAction">/ordersfindByStatus
+			</result>
+		</action>
+		<action name="findbypage_orders" class="orderitemAction"
+			method="adminFindAll">
+			<result name="success">/jsp/console/modelFunctions/showorderitems.jsp
+			</result>
+		</action>
+	</package>
+
+</struts>

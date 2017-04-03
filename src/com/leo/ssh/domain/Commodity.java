@@ -1,5 +1,5 @@
 package com.leo.ssh.domain;
-// Generated 2017-2-8 0:23:42 by Hibernate Tools 4.0.1.Final
+// Generated 2017-4-3 19:26:36 by Hibernate Tools 4.0.1.Final
 
 import java.math.BigDecimal;
 import java.util.Date;

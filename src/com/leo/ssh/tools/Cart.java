@@ -59,9 +59,9 @@ public class Cart {
 			Commodity commodity = orderitem.getCommodity();
 			Integer quantity = orderitem.getQuantity();
 			// totalPrice+=commodity.getFcPrice()*quantity;
-			if (quantity >= 3 && quantity <= 9) {
+			if (quantity >= 10 && quantity <= 99) {
 				totalPrice += commodity.getFcPrice() * quantity * 0.9;
-			} else if (quantity >= 10 && quantity <= 199) {
+			} else if (quantity >= 100 && quantity <= 199) {
 				totalPrice += commodity.getFcPrice() * quantity * 0.8;
 			} else if (quantity >= 200) {
 				totalPrice += commodity.getFcPrice() * quantity * 0.7;

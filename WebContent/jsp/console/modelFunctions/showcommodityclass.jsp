@@ -72,7 +72,6 @@ function delBatchClass(checkBoxName){
 </c:if>
 <h3>类别信息数据</h3>
 
-<a href="#" onclick="javascript:location='/SSH2Demo/jsp/searchDept.jsp';">条件查询</a>
 
 <table class="deptTable" style="margin-top:20px;">
 	<tr style="height: 35px; background-color: #B2B2B2; color: #FFFFFF; text-align:center;">

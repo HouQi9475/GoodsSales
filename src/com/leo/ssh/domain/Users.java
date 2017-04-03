@@ -1,5 +1,5 @@
 package com.leo.ssh.domain;
-// Generated 2017-2-8 0:23:42 by Hibernate Tools 4.0.1.Final
+// Generated 2017-4-3 19:26:36 by Hibernate Tools 4.0.1.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -17,13 +17,13 @@ public class Users implements java.io.Serializable {
 	private String userphone;
 	private String useraddress;
 	private String userpost;
-	private Set orders = new HashSet(0);
+	private Set orderses = new HashSet(0);
 
 	public Users() {
 	}
 
 	public Users(String useracount, String userpasswork, Boolean userstatus, String username, String userphone,
-			String useraddress, String userpost, Set orders) {
+			String useraddress, String userpost, Set orderses) {
 		this.useracount = useracount;
 		this.userpasswork = userpasswork;
 		this.userstatus = userstatus;
@@ -31,7 +31,7 @@ public class Users implements java.io.Serializable {
 		this.userphone = userphone;
 		this.useraddress = useraddress;
 		this.userpost = userpost;
-		this.orders = orders;
+		this.orderses = orderses;
 	}
 
 	public Integer getUserid() {
@@ -98,12 +98,12 @@ public class Users implements java.io.Serializable {
 		this.userpost = userpost;
 	}
 
-	public Set getOrders() {
-		return this.orders;
+	public Set getOrderses() {
+		return this.orderses;
 	}
 
-	public void setOrders(Set orders) {
-		this.orders = orders;
+	public void setOrderses(Set orderses) {
+		this.orderses = orderses;
 	}
 
 }

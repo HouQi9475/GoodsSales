@@ -174,14 +174,14 @@ function checkUsernameCallback(data){
 							</c:forEach>
 					</select></td>
 					</tr>
-					<tr>
+					<!-- <tr>
 						<td height="30" align="left" valign="middle">管理员状态：</td>
 						<td colspan="2"><input name="adminstatus" type="radio"
 							id="rdostatus" value="true" checked> <label for="rdostatus">启用
 								<input type="radio" name="adminstatus" id="rdostatus2" value="false">
 								禁用
 						</label></td>
-					</tr>
+					</tr> -->
 					<tr>
 						<td height="30" align="center" valign="middle">&nbsp;</td>
 						<td height="30" align="center" valign="middle"><input

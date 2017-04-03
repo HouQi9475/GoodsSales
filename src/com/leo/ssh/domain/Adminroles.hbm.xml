@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 2017-2-8 0:23:43 by Hibernate Tools 4.0.1.Final -->
+<!-- Generated 2017-4-3 19:26:37 by Hibernate Tools 4.0.1.Final -->
 <hibernate-mapping>
     <class name="com.leo.ssh.domain.Adminroles" table="adminroles" catalog="shop">
         <id name="rolesid" type="int">
